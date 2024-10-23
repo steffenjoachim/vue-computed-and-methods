@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task - Computed and Methods</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <header class="header">
+        <section class="header__section">
+            <p class="header__task-name">💻 Coding Task</p>
+            <p class="header__bootcamp-info-wrapper">
+                <span class="header__bootcamp-modul"><strong>Modul:</strong> Web Apps with Vue.js - Part 1</span>
+                <a href="https://www.coding-bootcamps.eu/" class="header__bootcamp-link">coding-bootcamps.eu</a>
+            </p>
+        </section>
+    </header>
+    <main>
+        <div id="app" class="inside">
+          <h1>20% off on all books from O'Reilly Media</h1>
+          <table>
+            <thead>
+              <tr>
+                <th v-for="columnName in objectKeys" :key="columnName">
+                  {{ columnName }}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="book in filterPublisherOReilly" :key="book.isbn">
+                <td v-for="key in objectKeys" :key="key">
+                  <!-- Checks if it is the price -->
+                  <template v-if="key === 'price'">
+                    <span class="strike">{{ book[key] }}</span> <!-- Original Price -->
+                    <br>
+                    <span>{{ calculateDiscountedPrice(book[key]) }}</span> <!-- Reduced Price -->
+                  </template>
+                  <!-- Normal output for all other keys -->
+                  <template v-else>
+                    {{ book[key] }}
+                  </template>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </main>      
+    <script src="https://unpkg.com/vue@latest"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
